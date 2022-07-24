@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.032,=C:\Users\z\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.216,=C:\Users\z\OneDrive\Документы\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.985,=C:\Users\z\OneDrive\Документы\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.440,C:\Users\z\OneDrive\Документы\Embarcadero\Studio\Projects\Project1PCH1.h=C:\Users\z\OneDrive\Рабочий стол\Наука\IdealArchiver\IdealArchiverPCH1.h</Transaction>
     <Transaction>1899.12.30 00:00:00.000.616,=C:\Users\z\OneDrive\Рабочий стол\Наука\IdealArchiver\MTRand.cpp</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.189,C:\Users\z\OneDrive\Рабочий стол\Наука\IdealArchiver\IdealArchiver.cbproj=C:\Users\z\OneDrive\Документы\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.289,C:\Users\z\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.cpp=C:\Users\z\OneDrive\Рабочий стол\Наука\IdealArchiver\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.032,=C:\Users\z\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
     <Transaction>1899.12.30 00:00:00.000.303,=C:\Users\z\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.289,C:\Users\z\OneDrive\Рабочий стол\Наука\IdealArchiver\Unit1.h=C:\Users\z\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.985,=C:\Users\z\OneDrive\Документы\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
     <Transaction>1899.12.30 00:00:00.000.186,=C:\Users\z\OneDrive\Рабочий стол\Наука\IdealArchiver\MTRand.hpp</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.289,C:\Users\z\OneDrive\Рабочий стол\Наука\IdealArchiver\Unit1.dfm=C:\Users\z\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.440,C:\Users\z\OneDrive\Рабочий стол\Наука\IdealArchiver\IdealArchiverPCH1.h=C:\Users\z\OneDrive\Документы\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.289,C:\Users\z\OneDrive\Рабочий стол\Наука\IdealArchiver\Unit1.cpp=C:\Users\z\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.289,C:\Users\z\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\z\OneDrive\Рабочий стол\Наука\IdealArchiver\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.189,C:\Users\z\OneDrive\Документы\Embarcadero\Studio\Projects\Project1.cbproj=C:\Users\z\OneDrive\Рабочий стол\Наука\IdealArchiver\IdealArchiver.cbproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.289,C:\Users\z\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.h=C:\Users\z\OneDrive\Рабочий стол\Наука\IdealArchiver\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.216,=C:\Users\z\OneDrive\Документы\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
   </Transactions>
 </BorlandProject>
