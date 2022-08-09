@@ -1,8 +1,8 @@
 object Form1: TForm1
-  Left = 0
-  Top = 0
+  Left = 432
+  Top = 116
   BorderStyle = bsDialog
-  Caption = '   4. '#1048#1044#1045#1040#1051#1068#1053#1054#1045' '#1057#1046#1040#1058#1048#1045' '#1044#1040#1053#1053#1067#1061
+  Caption = '   4. '#1041#1045#1057#1050#1054#1053#1045#1063#1053#1054#1045' '#1057#1046#1040#1058#1048#1045' '#1044#1040#1053#1053#1067#1061
   ClientHeight = 508
   ClientWidth = 773
   Color = clBtnFace
@@ -79,5 +79,42 @@ object Form1: TForm1
     ParentFont = False
     ScrollBars = ssVertical
     TabOrder = 4
+  end
+  object Button3: TButton
+    Left = 394
+    Top = 471
+    Width = 75
+    Height = 25
+    Caption = #1056#1072#1089#1095#1077#1090' 2'
+    TabOrder = 5
+    OnClick = Button3Click
+  end
+  object Button4: TButton
+    Left = 475
+    Top = 471
+    Width = 75
+    Height = 25
+    Caption = #1056#1072#1089#1095#1077#1090' 3'
+    TabOrder = 6
+    OnClick = Button4Click
+  end
+  object Button5: TButton
+    Left = 556
+    Top = 471
+    Width = 75
+    Height = 25
+    Caption = 'Button5'
+    TabOrder = 7
+    OnClick = Button5Click
+  end
+  object CheckBox1: TCheckBox
+    Left = 644
+    Top = 475
+    Width = 97
+    Height = 17
+    Caption = #1041#1077#1079' '#1094#1080#1082#1083#1072
+    Checked = True
+    State = cbChecked
+    TabOrder = 8
   end
 end

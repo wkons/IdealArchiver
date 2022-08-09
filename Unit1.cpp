@@ -13,7 +13,7 @@ char *buf;
 
 int size=100;
 
-// Разрыв и подстрока максимального размера
+// Подстрока максимального размера
 int MaxSubStr(char *s, int ls, int *sz)
 {
   int i, j, p;
@@ -24,7 +24,7 @@ int MaxSubStr(char *s, int ls, int *sz)
   {
 	for (j=1;i+j<=ls;j++)
 	{
-	  if (s[i]==1 && (s[i+j]==0 || i+j>=ls))
+	  if ((s[i]==0 || s[i]==1) && (s[i+j]==2 || i+j>=ls))
 	  {
 		if (j>*sz)
 		{
@@ -65,6 +65,171 @@ char ExtractBit(char *buf, int *sz, int pos)
   (*sz)--;
 
   return bit;
+}
+
+// Подстрока максимального размера
+int MaxSubStr2(char *s, int ls, int *pos)
+{
+  int i, j, p;
+
+  int beg;
+  char flg=0;
+
+  int max=0;
+
+  for (i=0;i<=ls;i++)
+  {
+	if (s[i]==0 && (s[i-1]==1 || i==0))
+	{
+	  beg=i;
+	}
+	else
+	if (s[i]==1 && (s[i+1]==0 || i+1>=ls))
+	{
+	  if (i-beg>max)
+	  {
+		max=i-beg+1;
+		*pos=beg;
+	  }
+	}
+
+  }
+
+  return max;
+}
+
+// Подстрока максимального размера
+int MaxSubStr3(char *s, int ls, int *pos)
+{
+  int i, j, p;
+
+  int beg;
+  char flg=0;
+
+  int max=0;
+
+  for (i=0;i<=ls;i++)
+  {
+	if (s[i]!=2 && (s[i-1]==2 || i==0))
+//	if (s[i]==1 && (s[i-1]==0 || i==0))
+	{
+	  beg=i;
+	}
+	else
+//	if (s[i]==1 && (s[i+1]==0 || i+1>=ls))
+	if (s[i]!=2 && (s[i+1]==2 || i+1>=ls))
+	{
+	  if (i-beg>max)
+	  {
+		max=i-beg+1;
+		*pos=beg;
+	  }
+	}
+
+  }
+
+  return max;
+}
+
+// Подстрока максимального размера
+int MaxSubStr4(char *s, int ls, int *pos)
+{
+  int i, j, p;
+
+  int beg;
+  char flg=0;
+
+  int max=0;
+
+  for (i=0;i<=ls;i++)
+  {
+	if (s[i]==2 && (s[i-1]!=2 || i==0))
+//	if (s[i]!=2 && (s[i-1]==1 || i==0))
+	{
+	  beg=i;
+	}
+	else
+	if (s[i]==2 && (s[i+1]!=2 || i+1>=ls))
+//	if (s[i]!=2 && (s[i+1]==1 || i+1>=ls))
+	{
+	  if (i-beg>max)
+	  {
+		max=i-beg+1;
+		*pos=beg;
+	  }
+	}
+
+  }
+
+  return max;
+}
+
+// Подстрока максимального размера
+int MaxSubStr5(char *s, int ls, int *pos)
+{
+  int i, j, p;
+
+  int beg;
+  char flg=0;
+
+  int max=0;
+
+  for (i=0;i<=ls;i++)
+  {
+	if (s[i]!=2 && (s[i-1]==2 || i==0))
+	{
+	  beg=i;
+	}
+	else
+	if (s[i]==2 && (s[i+1]!=2 || i+1>=ls))
+	{
+	  if (i-beg>max)
+	  {
+		max=i-beg+1;
+		*pos=beg;
+	  }
+	}
+
+  }
+
+  return max;
+}
+
+// Подстрока максимального размера
+int MaxSubStr6(char *s, int ls, int *pos)
+{
+  int i, j, p;
+
+  int beg;
+  char flg=0;
+
+  int max=0;
+
+  for (i=0;i<=ls;i++)
+  {
+	if (!flg && s[i]==2 && (s[i-1]!=2 || i==0))
+	{
+	  beg=i;
+	}
+	else
+	if (s[i]==2 && (s[i+1]!=2 || i+1>=ls))
+	{
+
+	  if (flg==1 && i-beg>max)
+	  {
+		flg=0;
+		max=i-beg+1;
+		*pos=beg;
+	  }
+	  else
+	  {
+		flg++;
+	  }
+	}
+
+  }
+
+  return max;
 }
 
 #include "Unit1.h"
@@ -157,9 +322,13 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
   Memo1->Lines->Clear();
   Memo2->Lines->Clear();
 
-  for (int i=0;i<size;i++)
+  for (int i=0;i<size;i+=2)
   {
-	buf[i]=rnd->randInt()%2;
+loop:
+	buf[i]=rnd->randInt()%3;
+	buf[i+1]=rnd->randInt()%3;
+
+//	if (buf[i]==2 && buf[i+1]==2) goto loop;
   }
 
   if (size<3000)
@@ -193,46 +362,294 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
 
   char txt[3001];
 
-  int sz, osz;
+  double razr0=0, razr1=0;
+  double numz=1000;
 
-  int ps;
+  if (CheckBox1->Checked) numz=1;
 
-  int kol=1;
-
-  ps=MaxSubStr(buf,size,&sz);
-
-  osz=sz;
-
-  for (;;)
+  for (int z=0;z<numz;z++)
   {
-	for (int i=0;i<sz;i++) buf[ps+i]=2;
+	for (int i=0;i<size;i+=2)
+	{
+	  buf[i]=rnd->randInt()%3;
+	  buf[i+1]=rnd->randInt()%3;
+	}
+
+	int sz, osz;
+
+	int ps;
+
+	int kol=1;
 
 	ps=MaxSubStr(buf,size,&sz);
 
-	if (osz==sz) kol++; else break;
+	osz=sz;
+
+	for (;;)
+	{
+	  for (int i=0;i<sz;i++) buf[ps+i]=5;
+
+	  ps=MaxSubStr(buf,size,&sz);
+
+	  if (osz==sz) kol++; else break;
+	}
+
+	int r=osz-sz-1;
+
+	if (numz==1)
+	{
+	  sprintf(txt,"макс подстрока:   позиция %ld, длина %ld, кол-во %ld",ps,osz,kol);
+
+	  Memo2->Lines->Add(txt);
+	  Memo2->Lines->Add("");
+
+	  sprintf(txt,"разрыв: %ld",r);
+
+	  Memo2->Lines->Add(txt);
+
+      Memo2->Lines->Add("");
+
+	}
+
+	if (r==0) razr0+=kol;
+	if (r>=1) razr1+=kol;
+
+	if (size<3000 && numz==1)
+	{
+	  for (int i=0;i<size;i++)
+	  {
+		txt[i]=buf[i]+'0';
+		txt[i+1]=0;
+	  }
+
+	  Memo1->Lines->Add("");
+	  Memo1->Lines->Add(txt);
+	}
+	if (!(z%10) && numz!=1)
+	{
+	  sprintf(txt,"%ld из %.0lf",z,numz);
+
+	  Memo2->Lines->Add(txt);
+	}
   }
 
-  sprintf(txt,"макс подстрока:   позиция %ld, длина %ld, кол-во %ld",ps,osz,kol);
+  sprintf(txt,"разрыв 0: %.5lf",razr0/numz);
+
+  Memo2->Lines->Add(txt);
+
+  sprintf(txt,"разрыв 1: %.5lf",razr1/numz);
+
+  Memo2->Lines->Add(txt);
+
+  Memo2->Lines->Add("");
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button3Click(TObject *Sender)
+{
+  //Memo2->Lines->Clear();
+
+  char txt[3001];
+
+  int pos;
+
+  int max=MaxSubStr2(buf,size,&pos);
+
+
+  sprintf(txt,"макс подстрока размер: %ld    позиция: %ld",max,pos);
+
+  Memo2->Lines->Add(txt);
+
+  for (int i=0;i<max+2;i++)
+  {
+	txt[i]='0'+buf[pos-1+i];
+    txt[i+1]=0;
+  }
+
+  Memo2->Lines->Add("");
+  Memo2->Lines->Add(txt);
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button4Click(TObject *Sender)
+{
+  //Memo2->Lines->Clear();
+
+  int mx=0,mx2=0;
+
+  for (int z=0;z<1;z++)
+  {
+	for (int i=0;i<size;i++)
+	{
+	  buf[i]=rnd->randInt()%3;
+	}
+
+	char txt[3001];
+
+	int pos;
+
+	int max=MaxSubStr3(buf,size,&pos);
+
+	sprintf(txt,"макс подстрока размер: %ld    позиция: %ld",max,pos);
+
+	Memo2->Lines->Add(txt);
+
+	for (int i=0;i<max+2;i++)
+	{
+	  txt[i]='0'+buf[pos-1+i];
+	  txt[i+1]=0;
+	}
+
+	Memo2->Lines->Add("");
+	Memo2->Lines->Add(txt);
+	Memo2->Lines->Add("");
+
+  //Memo2->Lines->Clear();
+
+	int max2=MaxSubStr4(buf,size,&pos);
+
+	sprintf(txt,"макс подстрока размер: %ld    позиция: %ld",max2,pos);
+
+	Memo2->Lines->Add(txt);
+
+	for (int i=0;i<max2+2;i++)
+	{
+	  txt[i]='0'+buf[pos-1+i];
+	  txt[i+1]=0;
+	}
+
+	Memo2->Lines->Add("");
+	Memo2->Lines->Add(txt);
+	Memo2->Lines->Add("");
+
+	if (1)//max>mx)
+	{
+	  mx=max;
+	  mx2=max2;
+	  sprintf(txt,"Соизмеримы [шаг:%ld]: %ld %ld",z,max,max2);
+	  Memo2->Lines->Add(txt);
+	  Memo2->Lines->Add("");
+	  //break;
+	}
+
+  }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button5Click(TObject *Sender)
+{
+  //Memo2->Lines->Clear();
+
+  char txt[3001];
+  char txt2[3001];
+
+  double cikl=100000;//10000;
+
+  if (CheckBox1->Checked) cikl=1;
+
+  double nn=0, nkol=0;
+
+  double sred=0;
+
+  for (int z=0;z<cikl;z++)
+{
+  for (int i=0;i<size;i++)
+  {
+	buf[i]=rnd->randInt()%3;
+  }
+
+
+  int pos,pos2;
+
+  int max=MaxSubStr6(buf,size,&pos);
+
+  int kolL=0, kolR=0;
+
+  char flg=0;
+
+  for (int i=0;i<max+1;i++)
+  {
+//	if (buf[pos+i]==2 && buf[pos-1+i]!=2) pos2=pos+i;
+
+	if (buf[pos+i]!=2 && i>0) flg=1;
+
+	if (!flg && buf[pos+i]==2)
+	{
+	  kolL++;
+	}
+	if (flg && buf[pos+i]==2)
+	{
+	  kolR++;
+	}
+  }
+
+  //nn+=kol;
+
+  if (cikl==1)
+  {
+	sprintf(txt,"макс подстрока размер: %ld    позиция: %ld",max,pos);
+
+	Memo2->Lines->Add(txt);
+  }
+
+  for (int i=0;i<max+2;i++)
+  {
+	txt[i]='0'+buf[pos-1+i];
+	txt[i+1]=0;
+
+	txt2[i]='0'+buf[pos-1+i];
+	txt2[i+1]=0;
+  }
+
+  if (kolL>kolR)
+  {
+	nn+=kolL;
+	nkol+=(2*kolR-2)+(kolL-kolR);
+  }
+  else
+  if (kolR>kolL)
+  {
+	nn+=kolR;
+	nkol+=(2*kolL-2)+(kolR-kolL);
+  }
+  else
+  {
+	nn+=kolR;
+	nkol+=kolR*2-2;
+	sred++;
+  }
+
+  if (cikl==1)
+  {
+	Memo2->Lines->Add("");
+	Memo2->Lines->Add(txt);
+	Memo2->Lines->Add("");
+	Memo2->Lines->Add(txt2);
+	Memo2->Lines->Add("");
+
+	sprintf(txt,"коллическво двоек L: %ld  коллическво двоек R: %ld",kolL,kolR);
+
+	Memo2->Lines->Add(txt);
+	Memo2->Lines->Add("");
+   }
+ }
+
+  sprintf(txt,"средний размер: %.5lf",nn/cikl);
 
   Memo2->Lines->Add(txt);
   Memo2->Lines->Add("");
 
-  sprintf(txt,"разрыв: %ld",osz-sz-1);
+  sprintf(txt,"битов для сохранения: %.5lf",nkol/cikl);
 
   Memo2->Lines->Add(txt);
+  Memo2->Lines->Add("");
 
-  if (size<3000)
-  {
-	for (int i=0;i<size;i++)
-	{
-	  txt[i]=buf[i]+'0';
-	  txt[i+1]=0;
-	}
+  sprintf(txt,"Процент равных двоек: %.5lf",sred/cikl);
 
-	Memo1->Lines->Add("");
-	Memo1->Lines->Add(txt);
-  }
-
+  Memo2->Lines->Add(txt);
+  Memo2->Lines->Add("");
 }
 //---------------------------------------------------------------------------
 
